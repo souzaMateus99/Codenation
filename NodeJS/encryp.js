@@ -1,17 +1,19 @@
+//import libs
 const alphabet = require('alphabet');
 const request = require('request');
 const sha1 = require('crypto');
 const fs = require('fs');
 
+//create global variables
 const codenationToken = 'deca6be2ba8e26cca57f29630a8f1e51e6277f0a';
-const tokenParameter = '?token=' + codenationToken;
 const baseUri = 'https://api.codenation.dev/v1/challenge/dev-ps';
+const tokenParameter = '?token=' + codenationToken;
 const getUri = baseUri + '/generate-data' + tokenParameter;
 const submitUri = baseUri + '/submit-solution' + tokenParameter;
 
 const filepath = 'answer.json';
 
-
+//methods to use
 const createFile = (data, isJson) => {
     if(isJson){
         data = JSON.stringify(data);
@@ -76,6 +78,7 @@ const submit = () => {
     form.append('answer', fs.createReadStream(filepath));
 };
 
+//main method (execute all)
 const main = () => {
     request(getUri, {json: true}, (error, response, body) => {
         if(error){
@@ -96,4 +99,5 @@ const main = () => {
     });
 };
 
+//call the main method
 main();
