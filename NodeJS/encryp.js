@@ -66,7 +66,7 @@ const cryptoSha1 = (text) => {
 };
 
 const submit = () => {    
-    let req = request.post(submitUri, function (error, response) {
+    const req = request.post(submitUri, function (error, response) {
         if(error){
             console.log(`error: ${error}`);
         }else{
@@ -74,7 +74,7 @@ const submit = () => {
         }
     });
 
-    let form = req.form();
+    const form = req.form();
     form.append('answer', fs.createReadStream(filepath));
 };
 
